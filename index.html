@@ -1,414 +1,421 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 Pillars of Health, Fulfillment, and Productivity</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- AOS Animation Library -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <!-- Lottie Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Particles.js for background effects -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Chart.js for visualizations -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>5 Pillars of Wellbeing</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Vendor JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
+
 <body>
-    <!-- Particles Background Container -->
-    <div id="particles-js"></div>
-    
-    <div class="page-layout">
-        <div class="main-content">
-            <header>
-                <div class="container">
-                    <h1 class="glow-text">The 5 Pillars of Wellbeing</h1>
-                    <p class="tagline">Key foundations for health, success, and daily energy</p>
-                    <div class="header-actions">
-                        <button id="presentation-mode" class="action-button">
-                            <i class="fas fa-presentation"></i> Presentation Mode
-                        </button>
-                    </div>
-                </div>
-            </header>
+  <div id="particles-js"></div>
 
-            <nav class="pillar-nav">
-                <div class="container">
-                    <ul>
-                        <li><a href="#think-well" class="nav-item"><i class="fas fa-brain"></i> Think Well</a></li>
-                        <li><a href="#sleep-well" class="nav-item"><i class="fas fa-moon"></i> Sleep Well</a></li>
-                        <li><a href="#move-well" class="nav-item"><i class="fas fa-running"></i> Move Well</a></li>
-                        <li><a href="#eat-well" class="nav-item"><i class="fas fa-apple-alt"></i> Eat Well</a></li>
-                        <li><a href="#manage-addiction" class="nav-item"><i class="fas fa-balance-scale"></i> Manage Habits</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-            <main>
-                <!-- Interactive Dashboard/Summary Section -->
-                <section id="dashboard" class="dashboard-section">
-                    <div class="container">
-                        <h2 class="section-heading">Your Wellbeing at a Glance</h2>
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card interactive" data-pillar="think">
-                                <div class="card-icon"><i class="fas fa-brain"></i></div>
-                                <h3>Think Well</h3>
-                                <div class="canvas-container">
-                                    <canvas id="thinkChart"></canvas>
-                                </div>
-                                <p>Mental wellness affects everything you do</p>
-                            </div>
-                            <div class="dashboard-card interactive" data-pillar="sleep">
-                                <div class="card-icon"><i class="fas fa-moon"></i></div>
-                                <h3>Sleep Well</h3>
-                                <div class="canvas-container">
-                                    <canvas id="sleepChart"></canvas>
-                                </div>
-                                <p>Quality rest powers your day</p>
-                            </div>
-                            <div class="dashboard-card interactive" data-pillar="move">
-                                <div class="card-icon"><i class="fas fa-running"></i></div>
-                                <h3>Move Well</h3>
-                                <div class="canvas-container">
-                                    <canvas id="moveChart"></canvas>
-                                </div>
-                                <p>Regular activity boosts your health</p>
-                            </div>
-                            <div class="dashboard-card interactive" data-pillar="eat">
-                                <div class="card-icon"><i class="fas fa-apple-alt"></i></div>
-                                <h3>Eat Well</h3>
-                                <div class="canvas-container">
-                                    <canvas id="eatChart"></canvas>
-                                </div>
-                                <p>Nutrition fuels your body and mind</p>
-                            </div>
-                            <div class="dashboard-card interactive" data-pillar="addiction">
-                                <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
-                                <h3>Manage Habits</h3>
-                                <div class="canvas-container">
-                                    <canvas id="habitChart"></canvas>
-                                </div>
-                                <p>Balanced habits support wellbeing</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Think Well Section -->
-                <section id="think-well" class="pillar think-well">
-                    <div class="container">
-                        <div class="pillar-content" data-aos="fade-up">
-                            <div class="pillar-header">
-                                <div class="pillar-icon">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <h2>Think Well</h2>
-                                <p class="pillar-subtitle">Mental Health & Emotions</p>
-                            </div>
-                            
-                            <div class="pillar-info">
-                                <div class="why-important">
-                                    <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
-                                    <ul>
-                                        <li>Your mental health affects your decisions, work, and relationships</li>
-                                        <li>Managing emotions helps you handle stress better</li>
-                                        <li>Positive thinking helps your immune system work better</li>
-                                        <li>Mental strength helps you bounce back from tough times</li>
-                                        <li>Studies show better mental health improves school and work performance</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="how-to-strengthen">
-                                    <h3><i class="fas fa-tools"></i> How to Improve</h3>
-                                    <ul>
-                                        <li class="interactive-tip"><strong>Daily Mindfulness:</strong> 10-15 minutes of quiet meditation</li>
-                                        <li class="interactive-tip"><strong>Challenge Negative Thoughts:</strong> Question negative thinking patterns</li>
-                                        <li class="interactive-tip"><strong>Keep a Journal:</strong> Write down thoughts and feelings</li>
-                                        <li class="interactive-tip"><strong>Talk to Someone:</strong> Friend, family member, or counselor</li>
-                                        <li class="interactive-tip"><strong>Digital Breaks:</strong> Take regular breaks from screens and social media</li>
-                                        <li class="interactive-tip"><strong>Creative Activities:</strong> Art, music, or writing to express emotions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="interactive-element">
-                                <h3>Try This: One-Minute Breathing Exercise</h3>
-                                <div class="breathing-exercise">
-                                    <div class="breathing-circle"></div>
-                                    <p class="breathing-instruction">Breathe in...</p>
-                                    <button class="start-breathing">Start</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Sleep Well Section -->
-                <section id="sleep-well" class="pillar sleep-well">
-                    <div class="container">
-                        <div class="pillar-content" data-aos="fade-up">
-                            <div class="pillar-header">
-                                <div class="pillar-icon">
-                                    <i class="fas fa-moon"></i>
-                                </div>
-                                <h2>Sleep Well</h2>
-                                <p class="pillar-subtitle">Rest & Recovery</p>
-                            </div>
-                            
-                            <div class="pillar-info">
-                                <div class="why-important">
-                                    <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
-                                    <ul>
-                                        <li>Sleep helps your brain store memories and learn better</li>
-                                        <li>Good rest helps control your hunger and energy levels</li>
-                                        <li>During deep sleep, your body repairs itself</li>
-                                        <li>Not sleeping enough raises your risk for many health problems</li>
-                                        <li>Quality sleep improves focus and reaction time</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="how-to-strengthen">
-                                    <h3><i class="fas fa-tools"></i> How to Improve</h3>
-                                    <ul>
-                                        <li class="interactive-tip"><strong>Regular Schedule:</strong> Go to bed and wake up at the same time daily</li>
-                                        <li class="interactive-tip"><strong>Cool, Dark Room:</strong> Keep your bedroom between 65-68°F</li>
-                                        <li class="interactive-tip"><strong>No Screens Before Bed:</strong> Put devices away 1 hour before sleep</li>
-                                        <li class="interactive-tip"><strong>Bedtime Routine:</strong> Read, stretch, or do breathing exercises</li>
-                                        <li class="interactive-tip"><strong>Watch Caffeine:</strong> No coffee or energy drinks after 2pm</li>
-                                        <li class="interactive-tip"><strong>Morning Light:</strong> Get sunlight early in the day</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="interactive-element">
-                                <h3>Explore: Sleep Cycle Stages</h3>
-                                <div class="sleep-cycle-visual">
-                                    <div class="cycle-stages">
-                                        <div class="cycle-stage" data-stage="1">Light Sleep</div>
-                                        <div class="cycle-stage" data-stage="2">Deep Sleep</div>
-                                        <div class="cycle-stage" data-stage="3">REM Sleep</div>
-                                    </div>
-                                    <div class="cycle-info">
-                                        <p>Click on a sleep stage to learn more</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Move Well Section -->
-                <section id="move-well" class="pillar move-well">
-                    <div class="container">
-                        <div class="pillar-content" data-aos="fade-up">
-                            <div class="pillar-header">
-                                <div class="pillar-icon">
-                                    <i class="fas fa-running"></i>
-                                </div>
-                                <h2>Move Well</h2>
-                                <p class="pillar-subtitle">Physical Activity & Exercise</p>
-                            </div>
-                            
-                            <div class="pillar-info">
-                                <div class="why-important">
-                                    <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
-                                    <ul>
-                                        <li>Regular movement improves heart health and helps you live longer</li>
-                                        <li>Exercise releases feel-good chemicals that fight stress and sad feelings</li>
-                                        <li>Physical activity helps your brain work better and boosts creativity</li>
-                                        <li>Strength training keeps your muscles strong as you grow</li>
-                                        <li>Active people have a much lower risk of getting sick</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="how-to-strengthen">
-                                    <h3><i class="fas fa-tools"></i> How to Improve</h3>
-                                    <ul>
-                                        <li class="interactive-tip"><strong>Daily Movement:</strong> Try for 10,000 steps or 30 minutes of activity</li>
-                                        <li class="interactive-tip"><strong>Build Strength:</strong> Do pushups, squats, or weights 2-3 times weekly</li>
-                                        <li class="interactive-tip"><strong>Stay Flexible:</strong> Regular stretching or yoga</li>
-                                        <li class="interactive-tip"><strong>Find Fun:</strong> Choose activities you enjoy like dancing or sports</li>
-                                        <li class="interactive-tip"><strong>Take Breaks:</strong> Stand up and move during long sitting periods</li>
-                                        <li class="interactive-tip"><strong>Buddy System:</strong> Exercise with friends for motivation</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="interactive-element">
-                                <h3>Quick Activity: Desk Exercises</h3>
-                                <div class="exercise-demo">
-                                    <div class="exercise-animation">
-                                        <img src="https://cdn.dribbble.com/users/2593068/screenshots/7771215/media/67d1d801bf4dc7487b04d36b6ec78c1d.gif" alt="Exercise demonstration" class="exercise-gif">
-                                    </div>
-                                    <div class="exercise-controls">
-                                        <button class="exercise-btn" data-exercise="stretch">Desk Stretch</button>
-                                        <button class="exercise-btn" data-exercise="twist">Chair Twist</button>
-                                        <button class="exercise-btn" data-exercise="arms">Arm Circles</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Eat Well Section -->
-                <section id="eat-well" class="pillar eat-well">
-                    <div class="container">
-                        <div class="pillar-content" data-aos="fade-up">
-                            <div class="pillar-header">
-                                <div class="pillar-icon">
-                                    <i class="fas fa-apple-alt"></i>
-                                </div>
-                                <h2>Eat Well</h2>
-                                <p class="pillar-subtitle">Nutrition & Hydration</p>
-                            </div>
-                            
-                            <div class="pillar-info">
-                                <div class="why-important">
-                                    <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
-                                    <ul>
-                                        <li>Food directly affects your brain function and energy levels</li>
-                                        <li>Drinking enough water improves focus and physical performance</li>
-                                        <li>A balanced diet reduces inflammation and disease risk</li>
-                                        <li>Gut health affects your mood and immune system</li>
-                                        <li>Good food choices can help you live 10-15 years longer</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="how-to-strengthen">
-                                    <h3><i class="fas fa-tools"></i> How to Improve</h3>
-                                    <ul>
-                                        <li class="interactive-tip"><strong>More Plants:</strong> Fill half your plate with vegetables and fruits</li>
-                                        <li class="interactive-tip"><strong>Quality Protein:</strong> Include eggs, lean meat, beans, or tofu at meals</li>
-                                        <li class="interactive-tip"><strong>Stay Hydrated:</strong> Drink 8 glasses of water daily</li>
-                                        <li class="interactive-tip"><strong>Eat Mindfully:</strong> Slow down and avoid distractions while eating</li>
-                                        <li class="interactive-tip"><strong>Plan Ahead:</strong> Prepare healthy meals and snacks in advance</li>
-                                        <li class="interactive-tip"><strong>Eat Colorfully:</strong> Different colored foods provide different nutrients</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="interactive-element">
-                                <h3>Interactive: Build a Balanced Meal</h3>
-                                <div class="meal-builder">
-                                    <div class="plate">
-                                        <div class="plate-section veggies" data-filled="false">Vegetables (50%)</div>
-                                        <div class="plate-section protein" data-filled="false">Protein (25%)</div>
-                                        <div class="plate-section carbs" data-filled="false">Whole Grains (25%)</div>
-                                    </div>
-                                    <div class="food-options">
-                                        <div class="food-item" data-type="veggies">Broccoli</div>
-                                        <div class="food-item" data-type="veggies">Spinach</div>
-                                        <div class="food-item" data-type="protein">Chicken</div>
-                                        <div class="food-item" data-type="protein">Beans</div>
-                                        <div class="food-item" data-type="carbs">Brown Rice</div>
-                                        <div class="food-item" data-type="carbs">Quinoa</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Addiction Management Section -->
-                <section id="manage-addiction" class="pillar manage-addiction">
-                    <div class="container">
-                        <div class="pillar-content" data-aos="fade-up">
-                            <div class="pillar-header">
-                                <div class="pillar-icon">
-                                    <i class="fas fa-balance-scale"></i>
-                                </div>
-                                <h2>Manage Habits</h2>
-                                <p class="pillar-subtitle">Controlling Harmful Behaviors</p>
-                            </div>
-                            
-                            <div class="pillar-info">
-                                <div class="why-important">
-                                    <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
-                                    <ul>
-                                        <li>Unhealthy habits can take over your brain's reward system</li>
-                                        <li>Bad habits can damage relationships and school performance</li>
-                                        <li>Managing behaviors protects your physical and mental health</li>
-                                        <li>Unhealthy habits can reduce your energy and focus</li>
-                                        <li>Phone/social media overuse can hurt sleep quality and concentration</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="how-to-strengthen">
-                                    <h3><i class="fas fa-tools"></i> How to Improve</h3>
-                                    <ul>
-                                        <li class="interactive-tip"><strong>Know Your Triggers:</strong> Identify what causes unhealthy habits</li>
-                                        <li class="interactive-tip"><strong>Healthy Swaps:</strong> Replace bad habits with good ones</li>
-                                        <li class="interactive-tip"><strong>Get Support:</strong> Talk to friends, family, or join support groups</li>
-                                        <li class="interactive-tip"><strong>Set Limits:</strong> Create clear rules around potentially harmful behaviors</li>
-                                        <li class="interactive-tip"><strong>Screen Boundaries:</strong> Use app timers and phone-free zones</li>
-                                        <li class="interactive-tip"><strong>Ask for Help:</strong> Talk to a counselor for serious concerns</li>
-                                    </ul>
-                                </div>
-                            </div>
-                          
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Conclusion Section with Connections -->
-            </main>
-
-            <footer>
-                <div class="container">
-                    <p>© 2025 The 5 Pillars of Wellbeing | Created for health, success, and daily energy</p>
-                    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Back to top</a>
-                </div>
-            </footer>
+  <div class="page-layout">
+    <!--–––––––––––––––––––– MAIN CONTENT –––––––––––––––––––––-->
+    <div class="main-content">
+      <!--──────────── Header ────────────-->
+      <header>
+        <div class="container">
+          <h1 class="glow-text">The 5 Pillars of Wellbeing</h1>
+          <p class="tagline">Key foundations for health, success, and daily energy</p>
+          <div class="header-actions">
+            <button id="presentation-mode" class="action-button"><i class="fas fa-display"></i> Presentation Mode</button>
+            <button id="toggle-theme" class="action-button"><i class="fas fa-moon"></i></button>
+          </div>
         </div>
+      </header>
 
-        <!-- AI Chat Interface - Positioned on right side -->
-        <div id="ai-chat-container">
-            <div class="chat-header">
-                <h3><i class="fas fa-robot"></i> Health Buddy</h3>
-                <button id="close-ai"><i class="fas fa-minus"></i></button>
-            </div>
-            <div class="chat-body">
-                <div class="chat-messages" id="chat-messages">
-                    <!-- Initial welcome message will be added via JavaScript -->
-                </div>
-                <div class="topic-buttons">
-                    <button class="topic-btn" data-topic="think"><i class="fas fa-brain"></i> Think</button>
-                    <button class="topic-btn" data-topic="sleep"><i class="fas fa-moon"></i> Sleep</button>
-                    <button class="topic-btn" data-topic="move"><i class="fas fa-running"></i> Move</button>
-                    <button class="topic-btn" data-topic="eat"><i class="fas fa-apple-alt"></i> Eat</button>
-                    <button class="topic-btn" data-topic="addiction"><i class="fas fa-balance-scale"></i> Habits</button>
-                </div>
-                <div class="chat-input">
-                    <input type="text" id="user-message" placeholder="Type your question here...">
-                    <button id="send-message"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
+      <!--──────────── Sticky Navigation ────────────-->
+      <nav class="pillar-nav">
+        <div class="container">
+          <ul>
+            <li><a href="#think-well" class="nav-item"><i class="fas fa-brain"></i> Think Well</a></li>
+            <li><a href="#sleep-well" class="nav-item"><i class="fas fa-moon"></i> Sleep Well</a></li>
+            <li><a href="#move-well" class="nav-item"><i class="fas fa-running"></i> Move Well</a></li>
+            <li><a href="#eat-well" class="nav-item"><i class="fas fa-apple-alt"></i> Eat Well</a></li>
+            <li><a href="#manage-addiction" class="nav-item"><i class="fas fa-balance-scale"></i> Manage Habits</a></li>
+            <li><a href="#conclusion" class="nav-item"><i class="fas fa-link"></i> Connections</a></li>
+          </ul>
         </div>
+      </nav>
+
+      <!--–––––––––––––––––– MAIN SECTIONS ––––––––––––––––––-->
+      <main>
+        <!--──────────── Dashboard ────────────-->
+        <section id="dashboard" class="dashboard-section">
+          <div class="container">
+            <h2 class="section-heading">Your Wellbeing at a Glance</h2>
+
+            <div class="dashboard-grid">
+              <div class="dashboard-card interactive" data-pillar="think">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>Think Well</h3>
+                <div class="canvas-container"><canvas id="thinkChart"></canvas></div>
+                <p>Mental wellness affects everything you do</p>
+              </div>
+
+              <div class="dashboard-card interactive" data-pillar="sleep">
+                <div class="card-icon"><i class="fas fa-moon"></i></div>
+                <h3>Sleep Well</h3>
+                <div class="canvas-container"><canvas id="sleepChart"></canvas></div>
+                <p>Quality rest powers your day</p>
+              </div>
+
+              <div class="dashboard-card interactive" data-pillar="move">
+                <div class="card-icon"><i class="fas fa-running"></i></div>
+                <h3>Move Well</h3>
+                <div class="canvas-container"><canvas id="moveChart"></canvas></div>
+                <p>Regular activity boosts your health</p>
+              </div>
+
+              <div class="dashboard-card interactive" data-pillar="eat">
+                <div class="card-icon"><i class="fas fa-apple-alt"></i></div>
+                <h3>Eat Well</h3>
+                <div class="canvas-container"><canvas id="eatChart"></canvas></div>
+                <p>Nutrition fuels your body and mind</p>
+              </div>
+
+              <div class="dashboard-card interactive" data-pillar="addiction">
+                <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+                <h3>Manage Habits</h3>
+                <div class="canvas-container"><canvas id="habitChart"></canvas></div>
+                <p>Balanced habits support wellbeing</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Think Well ────────────-->
+        <section id="think-well" class="pillar think-well">
+          <div class="container">
+            <div class="pillar-content" data-aos="fade-up">
+              <div class="pillar-header">
+                <div class="pillar-icon"><i class="fas fa-brain"></i></div>
+                <h2>Think Well</h2>
+                <p class="pillar-subtitle">Mental Health & Emotions</p>
+              </div>
+
+              <div class="pillar-info">
+                <!-- Why Important -->
+                <div class="why-important">
+                  <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
+                  <ul>
+                    <li>Your mental health affects decisions, work, and relationships</li>
+                    <li>Managing emotions lowers stress</li>
+                    <li>Positive thinking supports immunity</li>
+                    <li>Mental strength builds resilience</li>
+                    <li>Better mental health boosts performance</li>
+                  </ul>
+                </div>
+
+                <!-- How to Strengthen -->
+                <div class="how-to-strengthen">
+                  <h3><i class="fas fa-tools"></i> How to Improve</h3>
+                  <ul>
+                    <li class="interactive-tip"><strong>Daily Mindfulness:</strong> 10–15 minutes of meditation</li>
+                    <li class="interactive-tip"><strong>Challenge Negative Thoughts:</strong> reframe them</li>
+                    <li class="interactive-tip"><strong>Keep a Journal:</strong> write feelings</li>
+                    <li class="interactive-tip"><strong>Talk to Someone:</strong> friend, family, counselor</li>
+                    <li class="interactive-tip"><strong>Digital Breaks:</strong> regular screen-free time</li>
+                    <li class="interactive-tip"><strong>Creative Activities:</strong> art, music, writing</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Breathing Exercise -->
+              <div class="interactive-element">
+                <h3>Try This: One-Minute Breathing</h3>
+                <div class="breathing-exercise">
+                  <div class="breathing-circle"></div>
+                  <p class="breathing-instruction">Breathe in...</p>
+                  <button class="start-breathing">Start</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Sleep Well ────────────-->
+        <section id="sleep-well" class="pillar sleep-well">
+          <div class="container">
+            <div class="pillar-content" data-aos="fade-up">
+              <div class="pillar-header">
+                <div class="pillar-icon"><i class="fas fa-moon"></i></div>
+                <h2>Sleep Well</h2>
+                <p class="pillar-subtitle">Rest & Recovery</p>
+              </div>
+
+              <div class="pillar-info">
+                <!-- Why Important -->
+                <div class="why-important">
+                  <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
+                  <ul>
+                    <li>Sleep consolidates memory and learning</li>
+                    <li>Good rest balances hunger hormones</li>
+                    <li>Body repair happens in deep sleep</li>
+                    <li>Sleep debt raises health risks</li>
+                    <li>Quality sleep sharpens focus</li>
+                  </ul>
+                </div>
+
+                <!-- How to Strengthen -->
+                <div class="how-to-strengthen">
+                  <h3><i class="fas fa-tools"></i> How to Improve</h3>
+                  <ul>
+                    <li class="interactive-tip"><strong>Regular Schedule:</strong> same bedtime/wakeup</li>
+                    <li class="interactive-tip"><strong>Cool, Dark Room:</strong> 18 °C (65 °F)</li>
+                    <li class="interactive-tip"><strong>No Screens:</strong> 1 h before bed</li>
+                    <li class="interactive-tip"><strong>Bedtime Routine:</strong> read, stretch</li>
+                    <li class="interactive-tip"><strong>Limit Caffeine:</strong> none after 2 p.m.</li>
+                    <li class="interactive-tip"><strong>Morning Light:</strong> daylight soon after waking</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Sleep Cycle Visualizer -->
+              <div class="interactive-element">
+                <h3>Explore: Sleep Cycle Stages</h3>
+                <div class="sleep-cycle-visual">
+                  <div class="cycle-stages">
+                    <div class="cycle-stage" data-stage="1">Light Sleep</div>
+                    <div class="cycle-stage" data-stage="2">Deep Sleep</div>
+                    <div class="cycle-stage" data-stage="3">REM Sleep</div>
+                  </div>
+                  <div class="cycle-info"><p>Click a stage to learn more</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Move Well ────────────-->
+        <section id="move-well" class="pillar move-well">
+          <div class="container">
+            <div class="pillar-content" data-aos="fade-up">
+              <div class="pillar-header">
+                <div class="pillar-icon"><i class="fas fa-running"></i></div>
+                <h2>Move Well</h2>
+                <p class="pillar-subtitle">Physical Activity & Exercise</p>
+              </div>
+
+              <div class="pillar-info">
+                <!-- Why Important -->
+                <div class="why-important">
+                  <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
+                  <ul>
+                    <li>Movement strengthens heart and longevity</li>
+                    <li>Exercise releases mood-boosting endorphins</li>
+                    <li>Activity sparks creativity and brain health</li>
+                    <li>Strength training preserves muscle</li>
+                    <li>Active people have lower disease risk</li>
+                  </ul>
+                </div>
+
+                <!-- How to Strengthen -->
+                <div class="how-to-strengthen">
+                  <h3><i class="fas fa-tools"></i> How to Improve</h3>
+                  <ul>
+                    <li class="interactive-tip"><strong>Daily Movement:</strong> 10 000 steps or 30 min</li>
+                    <li class="interactive-tip"><strong>Build Strength:</strong> push-ups, squats 2–3×/wk</li>
+                    <li class="interactive-tip"><strong>Stay Flexible:</strong> stretch or yoga</li>
+                    <li class="interactive-tip"><strong>Find Fun:</strong> dance, sports, games</li>
+                    <li class="interactive-tip"><strong>Take Breaks:</strong> stand every hour</li>
+                    <li class="interactive-tip"><strong>Buddy System:</strong> exercise with friends</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Desk Exercise Demo -->
+              <div class="interactive-element">
+                <h3>Quick Activity: Desk Exercises</h3>
+                <div class="exercise-demo">
+                  <div class="exercise-animation">
+                    <img class="exercise-gif" src="https://cdn.dribbble.com/users/2593068/screenshots/7771215/media/67d1d801bf4dc7487b04d36b6ec78c1d.gif" alt="Exercise GIF"/>
+                  </div>
+                  <div class="exercise-controls">
+                    <button class="exercise-btn" data-exercise="stretch">Desk Stretch</button>
+                    <button class="exercise-btn" data-exercise="twist">Chair Twist</button>
+                    <button class="exercise-btn" data-exercise="arms">Arm Circles</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Eat Well ────────────-->
+        <section id="eat-well" class="pillar eat-well">
+          <div class="container">
+            <div class="pillar-content" data-aos="fade-up">
+              <div class="pillar-header">
+                <div class="pillar-icon"><i class="fas fa-apple-alt"></i></div>
+                <h2>Eat Well</h2>
+                <p class="pillar-subtitle">Nutrition & Hydration</p>
+              </div>
+
+              <div class="pillar-info">
+                <!-- Why Important -->
+                <div class="why-important">
+                  <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
+                  <ul>
+                    <li>Food powers brain and energy</li>
+                    <li>Hydration boosts focus</li>
+                    <li>Balanced diet reduces inflammation</li>
+                    <li>Gut health shapes mood and immunity</li>
+                    <li>Good food adds 10–15 years of life</li>
+                  </ul>
+                </div>
+
+                <!-- How to Strengthen -->
+                <div class="how-to-strengthen">
+                  <h3><i class="fas fa-tools"></i> How to Improve</h3>
+                  <ul>
+                    <li class="interactive-tip"><strong>More Plants:</strong> half your plate</li>
+                    <li class="interactive-tip"><strong>Quality Protein:</strong> eggs, beans, tofu</li>
+                    <li class="interactive-tip"><strong>Stay Hydrated:</strong> 8 glasses water</li>
+                    <li class="interactive-tip"><strong>Eat Mindfully:</strong> slow, no screens</li>
+                    <li class="interactive-tip"><strong>Plan Ahead:</strong> meal-prep snacks</li>
+                    <li class="interactive-tip"><strong>Eat Colorfully:</strong> rainbow produce</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Meal Builder -->
+              <div class="interactive-element">
+                <h3>Interactive: Build a Balanced Meal</h3>
+                <div class="meal-builder">
+                  <div class="plate">
+                    <div class="plate-section veggies" data-filled="false">Vegetables (50%)</div>
+                    <div class="plate-section protein" data-filled="false">Protein (25%)</div>
+                    <div class="plate-section carbs" data-filled="false">Whole Grains (25%)</div>
+                  </div>
+                  <div class="food-options">
+                    <div class="food-item" data-type="veggies">Broccoli</div>
+                    <div class="food-item" data-type="veggies">Spinach</div>
+                    <div class="food-item" data-type="protein">Chicken</div>
+                    <div class="food-item" data-type="protein">Beans</div>
+                    <div class="food-item" data-type="carbs">Brown Rice</div>
+                    <div class="food-item" data-type="carbs">Quinoa</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Manage Habits ────────────-->
+        <section id="manage-addiction" class="pillar manage-addiction">
+          <div class="container">
+            <div class="pillar-content" data-aos="fade-up">
+              <div class="pillar-header">
+                <div class="pillar-icon"><i class="fas fa-balance-scale"></i></div>
+                <h2>Manage Habits</h2>
+                <p class="pillar-subtitle">Controlling Harmful Behaviors</p>
+              </div>
+
+              <div class="pillar-info">
+                <!-- Why Important -->
+                <div class="why-important">
+                  <h3><i class="fas fa-question-circle"></i> Why It Matters</h3>
+                  <ul>
+                    <li>Unhealthy habits hijack reward systems</li>
+                    <li>They strain relationships and work</li>
+                    <li>Balanced habits protect health</li>
+                    <li>Poor habits drain energy</li>
+                    <li>Overuse of tech impairs sleep</li>
+                  </ul>
+                </div>
+
+                <!-- How to Strengthen -->
+                <div class="how-to-strengthen">
+                  <h3><i class="fas fa-tools"></i> How to Improve</h3>
+                  <ul>
+                    <li class="interactive-tip"><strong>Know Triggers:</strong> identify cues</li>
+                    <li class="interactive-tip"><strong>Healthy Swaps:</strong> replace bad routines</li>
+                    <li class="interactive-tip"><strong>Get Support:</strong> friends or groups</li>
+                    <li class="interactive-tip"><strong>Set Limits:</strong> clear boundaries</li>
+                    <li class="interactive-tip"><strong>Screen Boundaries:</strong> timers, phone-free zones</li>
+                    <li class="interactive-tip"><strong>Ask for Help:</strong> counselor if needed</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--──────────── Conclusion / Connections ────────────-->
+        <section id="conclusion" class="conclusion">
+          <div class="container">
+            <h2 class="section-heading">Everything Connects</h2>
+            <div class="pillars-connection">
+              <button id="show-connections" class="action-button"><i class="fas fa-project-diagram"></i> Show Connections</button>
+              <div id="connection-diagram" class="connection-diagram"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!--──────────── Footer ────────────-->
+      <footer>
+        <div class="container">
+          <p>© 2025 The 5 Pillars of Wellbeing</p>
+          <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Back to top</a>
+        </div>
+      </footer>
     </div>
 
-    <!-- Presentation Mode Overlay -->
-    <div id="presentation-overlay" class="presentation-overlay hidden">
-        <div class="slide-controls">
-            <button id="prev-slide" class="slide-btn"><i class="fas fa-arrow-left"></i></button>
-            <span id="slide-indicator">Slide 1/6</span>
-            <button id="next-slide" class="slide-btn"><i class="fas fa-arrow-right"></i></button>
-            <button id="exit-presentation" class="slide-btn exit"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
+    <!--–––––––––––––––––– AI Chat Sidebar ––––––––––––––––––-->
+    <div id="ai-chat-container">
+      <div class="chat-header">
+        <h3><i class="fas fa-robot"></i> Health Buddy</h3>
+        <button id="close-ai"><i class="fas fa-minus"></i></button>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="chat-body">
+        <div id="chat-messages" class="chat-messages"></div>
+
+        <div class="topic-buttons">
+          <button class="topic-btn" data-topic="think"><i class="fas fa-brain"></i> Think</button>
+          <button class="topic-btn" data-topic="sleep"><i class="fas fa-moon"></i> Sleep</button>
+          <button class="topic-btn" data-topic="move"><i class="fas fa-running"></i> Move</button>
+          <button class="topic-btn" data-topic="eat"><i class="fas fa-apple-alt"></i> Eat</button>
+          <button class="topic-btn" data-topic="addiction"><i class="fas fa-balance-scale"></i> Habits</button>
+        </div>
+
+        <div class="chat-input">
+          <input id="user-message" type="text" placeholder="Type your question here…" />
+          <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--–––––––––––––––––– Presentation Overlay ––––––––––––––––––-->
+  <div id="presentation-overlay" class="presentation-overlay hidden">
+    <div class="slide-controls">
+      <button id="prev-slide" class="slide-btn"><i class="fas fa-arrow-left"></i></button>
+      <span id="slide-indicator">Slide 1/6</span>
+      <button id="next-slide" class="slide-btn"><i class="fas fa-arrow-right"></i></button>
+      <button id="exit-presentation" class="slide-btn exit"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <!-- App script -->
+  <script src="script.js" defer></script>
 </body>
 </html>
